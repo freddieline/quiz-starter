@@ -6,6 +6,8 @@ JavaScript is huge. **You need about seven things this week**, and every one of 
 
 Read this before Wednesday. It's the difference between filling in `addPoints` by trial and error and actually knowing what you're doing.
 
+*Already written some JavaScript? Skip to [Going further](going-further.md) — this page is for a standing start.*
+
 ---
 
 ## 1. A variable — a named box with something in it

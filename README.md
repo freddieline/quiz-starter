@@ -1,12 +1,14 @@
 # Which ___ are you?
 
-A starter for building your own personality quiz, from zero. Nothing to install except GitHub Desktop and VS Code.
+A starter for building your own personality quiz. Nothing to install except GitHub Desktop and VS Code.
 
 **You choose what the quiz is about.** Films, football, Greek gods, crisp flavours, your friend group — genuinely anything. The code is the same either way, and the topic is what makes it yours.
 
 ### → Start here: [Getting started](docs/getting-started.md)
 
 Watch the video, make a GitHub account, get your own copy. Do the video part before Monday.
+
+**Written some code before?** The main week won't stretch you. Do Wednesday's exercise so the engine is yours, then work from [Going further](docs/going-further.md) — percentage results, shareable result URLs, tie-breaking, accessibility, tests. Take what you want from it whenever you run out of day.
 
 ---
 
@@ -32,6 +34,8 @@ These keep you unstuck. AI will break all of them if you let it.
 | **Thursday** | Make it look deliberate. Colours, spacing, type. Maybe [add pictures](docs/images.md). Check it on your phone. |
 | **Friday** | Publish it, send the link to five people, then talk us through how it works for five minutes. |
 
+**Done before the day is?** That's expected, not a sign you've rushed. [Going further](docs/going-further.md) has the harder work — take whatever looks interesting.
+
 ---
 
 ## The docs
@@ -46,3 +50,4 @@ These keep you unstuck. AI will break all of them if you let it.
 | [Adding images](docs/images.md) | Pictures on questions and results, and where to put them |
 | [Working with Claude](docs/using-claude.md) | Prompts that help, and what to never accept |
 | [When it breaks](docs/when-it-breaks.md) | Reading errors, and the three mistakes everyone makes |
+| [Going further](docs/going-further.md) | Harder extensions for when you finish early |

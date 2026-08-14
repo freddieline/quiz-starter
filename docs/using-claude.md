@@ -8,7 +8,15 @@ Claude is genuinely useful here. It's also very keen to rebuild your project as 
 
 ## Start every session by pasting this
 
+Pick whichever describes you. Both do the same job — pin the constraints before Claude reaches for a framework.
+
+**Starting from scratch:**
+
 > I'm learning to code — this is week one and I know nothing yet. I have one file, `index.html`, with the CSS and JavaScript inside it. No frameworks, no npm, no build step, nothing to install. Don't add files. Don't restructure anything. Explain changes in plain English and don't write anything I couldn't understand yet.
+
+**Written some code before:**
+
+> I'm working in a single `index.html` with inline CSS and vanilla JS — no framework, no build step, no package manager, and it has to run from a `file://` path. Keep suggestions inside those constraints. Don't reach for React, a bundler, or npm. Prefer the smallest change that works, and say when I'm about to paint myself into a corner.
 
 ---
 
