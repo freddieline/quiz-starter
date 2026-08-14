@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Which ___ are you?</title>
+
+<style>
+  /* ===================================================================
+     STYLES. This is CSS. It controls how things look.
+     Change any colour below and reload the page to see what happens.
+     =================================================================== */
+
+  :root {
+    --bg: #12111a;
+    --card: #1e1c2a;
+    --text: #f2f0ff;
+    --muted: #a39fc0;
+    --accent: #ff5d8f;      /* TODO: make this your colour */
+    --radius: 16px;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding: 24px;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    line-height: 1.5;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 520px;
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 28px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.45);
+  }
+
+  h1 { font-size: 1.6rem; margin: 0 0 8px; }
+  .sub { color: var(--muted); margin: 0 0 24px; }
+
+  /* The thin bar that fills up as you answer */
+  .progress {
+    height: 6px;
+    background: rgba(255,255,255,.1);
+    border-radius: 99px;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--accent);
+    transition: width .3s ease;
+  }
+
+  .question { font-size: 1.25rem; font-weight: 600; margin: 0 0 20px; }
+
+  /* Answer buttons */
+  .answers { display: grid; gap: 12px; }
+  button.answer {
+    font: inherit;
+    text-align: left;
+    color: var(--text);
+    background: rgba(255,255,255,.06);
+    border: 2px solid transparent;
+    border-radius: 12px;
+    padding: 14px 16px;
+    cursor: pointer;
+    transition: background .15s, border-color .15s, transform .05s;
+  }
+  button.answer:hover { background: rgba(255,255,255,.12); }
+  button.answer:focus-visible { outline: none; border-color: var(--accent); }
+  button.answer:active { transform: scale(.99); }
+
+  /* The result screen */
+  .result-emoji { font-size: 4rem; line-height: 1; margin-bottom: 8px; }
+  .result-title { font-size: 2rem; margin: 0 0 12px; color: var(--accent); }
+  .result-blurb { color: var(--muted); margin: 0 0 24px; }
+
+  .row { display: flex; gap: 12px; flex-wrap: wrap; }
+  button.action {
+    font: inherit;
+    font-weight: 600;
+    color: var(--bg);
+    background: var(--accent);
+    border: 0;
+    border-radius: 999px;
+    padding: 12px 22px;
+    cursor: pointer;
+  }
+  button.action.ghost {
+    background: transparent;
+    color: var(--text);
+    box-shadow: inset 0 0 0 2px rgba(255,255,255,.2);
+  }
+
+  .hidden { display: none; }
+</style>
+</head>
+
+<body>
+
+<!-- ===================================================================
+     THE PAGE. This is HTML. It's the boxes that hold everything.
+     JavaScript below fills these in — you rarely need to edit this part.
+     =================================================================== -->
+
+<main class="card">
+
+  <!-- Screen 1: the quiz -->
+  <section id="quiz-screen">
+    <h1 id="quiz-title">Which ___ are you?</h1>
+    <p class="sub" id="quiz-subtitle">TODO: write a one-line teaser here</p>
+
+    <div class="progress"><div class="progress-fill" id="progress-fill"></div></div>
+
+    <p class="question" id="question-text">Question goes here</p>
+    <div class="answers" id="answers"></div>
+  </section>
+
+  <!-- Screen 2: the result. Hidden until the quiz is finished. -->
+  <section id="result-screen" class="hidden">
+    <div class="result-emoji" id="result-emoji">✨</div>
+    <h1 class="result-title" id="result-title">Result</h1>
+    <p class="result-blurb" id="result-blurb"></p>
+    <div class="row">
+      <button class="action" id="copy-button">Copy my result</button>
+      <button class="action ghost" id="restart-button">Try again</button>
+    </div>
+  </section>
+
+</main>
+
+<script>
+/* =====================================================================
+   1. YOUR CONTENT
+   =====================================================================
+   Everything about what this quiz IS lives in the two lists below.
+   You can change all of it without touching any of the code further down.
+
+   HOW SCORING WORKS
+   Every answer awards points to one or more results, using the result's
+   `id`. At the end, whichever id has the most points wins.
+   ===================================================================== */
+
+const QUIZ_TITLE    = "Which ___ are you?";     // TODO: your title
+const QUIZ_SUBTITLE = "Six questions. Brutal honesty.";  // TODO: your teaser
+
+const QUESTIONS = [
+  {
+    q: "It's Friday, 8pm. Where are you?",
+    answers: [
+      { text: "Out. Obviously.",            points: { chaos: 2 } },
+      { text: "In bed with a series on.",   points: { calm: 2 } },
+      { text: "Wherever my friends are.",   points: { chaos: 1, calm: 1 } },
+    ],
+  },
+  {
+    q: "Group project. What's your role?",
+    answers: [
+      { text: "Running it, obviously.",     points: { chaos: 2 } },
+      { text: "Doing the actual work.",     points: { calm: 2 } },
+      { text: "Morale.",                    points: { chaos: 1 } },
+    ],
+  },
+
+  // TODO: add four more questions. Copy the shape above exactly.
+  // Watch the commas — every } needs a , after it except the last one.
+];
+
+const RESULTS = [
+  {
+    id: "chaos",                      // must match the ids used in points
+    title: "Total Menace",
+    emoji: "🔥",
+    blurb: "TODO: write something that'll make someone screenshot this.",
+  },
+  {
+    id: "calm",
+    title: "Quietly In Control",
+    emoji: "🌙",
+    blurb: "TODO: write this one too.",
+  },
+
+  // TODO: add a third and fourth result. Two is a bit boring.
+];
+
+
+/* =====================================================================
+   2. THE ENGINE
+   =====================================================================
+   You do not need to understand all of this on day one. You WILL need to
+   understand it by Friday, because you have to explain it.
+
+   Ask Claude: "explain this file line by line, simply".
+   ===================================================================== */
+
+// Where we are in the quiz, and the running score.
+let currentQuestion = 0;
+let scores = {};
+
+// Grab the bits of the page we need to change. document.getElementById
+// finds an element by the id="..." we gave it in the HTML above.
+const questionText   = document.getElementById("question-text");
+const answersBox     = document.getElementById("answers");
+const progressFill   = document.getElementById("progress-fill");
+const quizScreen     = document.getElementById("quiz-screen");
+const resultScreen   = document.getElementById("result-screen");
+
+
+// Put the title and teaser on the page from your variables above.
+document.getElementById("quiz-title").textContent = QUIZ_TITLE;
+document.getElementById("quiz-subtitle").textContent = QUIZ_SUBTITLE;
+document.title = QUIZ_TITLE;
+
+
+/**
+ * Draw one question on the screen: the text, and a button per answer.
+ */
+function showQuestion() {
+  const question = QUESTIONS[currentQuestion];
+
+  questionText.textContent = question.q;
+
+  // Empty the answers box, then add one button for each answer.
+  answersBox.innerHTML = "";
+
+  for (let i = 0; i < question.answers.length; i++) {
+    const answer = question.answers[i];
+
+    const button = document.createElement("button");
+    button.className = "answer";
+    button.textContent = answer.text;
+
+    // When this button is clicked, run chooseAnswer with this answer.
+    button.addEventListener("click", function () {
+      chooseAnswer(answer);
+    });
+
+    answersBox.appendChild(button);
+  }
+
+  // Update the progress bar. Maths: question 0 of 6 = 0%, 3 of 6 = 50%.
+  const percent = (currentQuestion / QUESTIONS.length) * 100;
+  progressFill.style.width = percent + "%";
+}
+
+
+/**
+ * Runs when someone clicks an answer.
+ */
+function chooseAnswer(answer) {
+  addPoints(answer.points);
+
+  currentQuestion = currentQuestion + 1;
+
+  if (currentQuestion < QUESTIONS.length) {
+    showQuestion();          // more questions left
+  } else {
+    showResult();            // that was the last one
+  }
+}
+
+
+/* ---------------------------------------------------------------------
+   WEDNESDAY'S JOB. This is the only part deliberately left unfinished.
+   --------------------------------------------------------------------- */
+
+/**
+ * Add an answer's points onto the running `scores` object.
+ *
+ * `answer.points` looks like:   { chaos: 2, calm: 1 }
+ * `scores` should end up like:  { chaos: 7, calm: 3 }
+ *
+ * HINT ------------------------------------------------------------------
+ * You need to loop over the keys of the points object. This gives you
+ * each id in turn:
+ *
+ *     for (const id in points) {  ...  }
+ *
+ * Inside the loop, add points[id] onto scores[id]. Careful: the first
+ * time you see an id, scores[id] doesn't exist yet — it's `undefined`,
+ * and undefined + 2 is NaN, not 2. So start it at 0 if it's missing.
+ * ---------------------------------------------------------------------- */
+function addPoints(points) {
+
+  // TODO (Wednesday): make this actually work.
+
+}
+
+
+/**
+ * Work out which result won, and show it.
+ */
+function showResult() {
+  progressFill.style.width = "100%";
+
+  const winningId = highestScoringId();
+
+  // Find the result whose id matches, or fall back to the first one.
+  let winner = RESULTS[0];
+  for (let i = 0; i < RESULTS.length; i++) {
+    if (RESULTS[i].id === winningId) {
+      winner = RESULTS[i];
+    }
+  }
+
+  document.getElementById("result-emoji").textContent = winner.emoji;
+  document.getElementById("result-title").textContent = winner.title;
+  document.getElementById("result-blurb").textContent = winner.blurb;
+
+  // Swap the screens over.
+  quizScreen.classList.add("hidden");
+  resultScreen.classList.remove("hidden");
+}
+
+
+/**
+ * Return the id with the most points.
+ * Works once addPoints is filled in. Until then scores is empty and this
+ * returns null, which is why everyone gets the same result today.
+ */
+function highestScoringId() {
+  let bestId = null;
+  let bestScore = -1;
+
+  for (const id in scores) {
+    if (scores[id] > bestScore) {
+      bestScore = scores[id];
+      bestId = id;
+    }
+  }
+
+  return bestId;
+}
+
+
+// ---- The buttons on the result screen -------------------------------
+
+document.getElementById("restart-button").addEventListener("click", function () {
+  currentQuestion = 0;
+  scores = {};
+  resultScreen.classList.add("hidden");
+  quizScreen.classList.remove("hidden");
+  showQuestion();
+});
+
+document.getElementById("copy-button").addEventListener("click", function () {
+  const title = document.getElementById("result-title").textContent;
+  const emoji = document.getElementById("result-emoji").textContent;
+  const message = "I got " + title + " " + emoji + " — " + QUIZ_TITLE;
+
+  navigator.clipboard.writeText(message);
+
+  // Confirm it worked, then put the label back after a moment.
+  const button = document.getElementById("copy-button");
+  button.textContent = "Copied!";
+  setTimeout(function () { button.textContent = "Copy my result"; }, 1500);
+});
+
+
+// Start the quiz.
+showQuestion();
+</script>
+
+</body>
+</html>
