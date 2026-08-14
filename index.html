@@ -63,6 +63,18 @@
 
   .question { font-size: 1.25rem; font-weight: 600; margin: 0 0 20px; }
 
+  /* Optional pictures. Hidden unless a question or result has one.
+     object-fit: cover means the image fills the box and crops rather than
+     squashing, so photos of different shapes all look tidy. */
+  .picture {
+    display: block;
+    width: 100%;
+    max-height: 220px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 18px;
+  }
+
   /* Answer buttons */
   .answers { display: grid; gap: 12px; }
   button.answer {
@@ -122,12 +134,14 @@
 
     <div class="progress"><div class="progress-fill" id="progress-fill"></div></div>
 
+    <img class="picture hidden" id="question-image" alt="">
     <p class="question" id="question-text">Question goes here</p>
     <div class="answers" id="answers"></div>
   </section>
 
   <!-- Screen 2: the result. Hidden until the quiz is finished. -->
   <section id="result-screen" class="hidden">
+    <img class="picture hidden" id="result-image" alt="">
     <div class="result-emoji" id="result-emoji">✨</div>
     <h1 class="result-title" id="result-title">Result</h1>
     <p class="result-blurb" id="result-blurb"></p>
@@ -157,6 +171,11 @@ const QUIZ_SUBTITLE = "Six questions. Brutal honesty.";  // TODO: your teaser
 const QUESTIONS = [
   {
     q: "It's Friday, 8pm. Where are you?",
+
+    // Pictures are optional. Put the file in the images/ folder, then delete
+    // the // at the start of the next line. See "Adding images" in the README.
+    // image: "images/friday-night.jpg",
+
     answers: [
       { text: "Out. Obviously.",            points: { chaos: 2 } },
       { text: "In bed with a series on.",   points: { calm: 2 } },
@@ -165,6 +184,7 @@ const QUESTIONS = [
   },
   {
     q: "Group project. What's your role?",
+    // image: "images/group-project.jpg",
     answers: [
       { text: "Running it, obviously.",     points: { chaos: 2 } },
       { text: "Doing the actual work.",     points: { calm: 2 } },
@@ -182,12 +202,14 @@ const RESULTS = [
     title: "Total Menace",
     emoji: "🔥",
     blurb: "TODO: write something that'll make someone screenshot this.",
+    // image: "images/result-chaos.jpg",   // optional — this is the one people share
   },
   {
     id: "calm",
     title: "Quietly In Control",
     emoji: "🌙",
     blurb: "TODO: write this one too.",
+    // image: "images/result-calm.jpg",
   },
 
   // TODO: add a third and fourth result. Two is a bit boring.
@@ -210,6 +232,7 @@ let scores = {};
 // Grab the bits of the page we need to change. document.getElementById
 // finds an element by the id="..." we gave it in the HTML above.
 const questionText   = document.getElementById("question-text");
+const questionImage  = document.getElementById("question-image");
 const answersBox     = document.getElementById("answers");
 const progressFill   = document.getElementById("progress-fill");
 const quizScreen     = document.getElementById("quiz-screen");
@@ -229,6 +252,9 @@ function showQuestion() {
   const question = QUESTIONS[currentQuestion];
 
   questionText.textContent = question.q;
+
+  // Show a picture if this question has one, hide the box if it doesn't.
+  showPicture(questionImage, question.image);
 
   // Empty the answers box, then add one button for each answer.
   answersBox.innerHTML = "";
@@ -251,6 +277,23 @@ function showQuestion() {
   // Update the progress bar. Maths: question 0 of 6 = 0%, 3 of 6 = 50%.
   const percent = (currentQuestion / QUESTIONS.length) * 100;
   progressFill.style.width = percent + "%";
+}
+
+
+/**
+ * Show a picture, or hide the box if there isn't one.
+ *
+ * `path` is whatever you put in `image:` — e.g. "images/friday-night.jpg".
+ * If you've left that line commented out, `path` is undefined and we just
+ * hide the box, which is why the quiz works fine with no pictures at all.
+ */
+function showPicture(element, path) {
+  if (path) {
+    element.src = path;
+    element.classList.remove("hidden");
+  } else {
+    element.classList.add("hidden");
+  }
 }
 
 
@@ -313,6 +356,7 @@ function showResult() {
     }
   }
 
+  showPicture(document.getElementById("result-image"), winner.image);
   document.getElementById("result-emoji").textContent = winner.emoji;
   document.getElementById("result-title").textContent = winner.title;
   document.getElementById("result-blurb").textContent = winner.blurb;
