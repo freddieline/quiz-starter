@@ -34,7 +34,7 @@ These stop the classic bug where it works on your laptop and is broken online.
 - **Keep them under about 300KB.** A photo straight off a phone is 4MB and will make your page crawl. Resize before adding — [squoosh.app](https://squoosh.app) does it in the browser, free.
 - **`.jpg` for photos, `.png` for graphics** with flat colour or transparency.
 - **The path is relative to `index.html`.** `images/foo.jpg` means "the images folder next to this file". No leading slash.
-- **Commit your images too.** They'll appear in GitHub Desktop's Changes list. If you don't commit and push them, your quiz works on your laptop and shows broken pictures for everyone else.
+- **Commit your images too.** They'll appear in GitHub Desktop's Changes list. If you don't commit and push them, your quiz works on your laptop and shows broken pictures for everyone else once it's [online](publishing.md).
 
 ---
 

@@ -32,7 +32,7 @@ These keep you unstuck. AI will break all of them if you let it.
 | **Tuesday** | Fill it out. Six questions, at least three results. Watch the commas. Read [the JavaScript you need](docs/javascript-basics.md) before you finish today. |
 | **Wednesday** | Make the scoring work. Find `addPoints` — it's deliberately empty, and it's why everyone currently gets the same result. There's a hint above it. **This is the day it becomes a real quiz.** |
 | **Thursday** | Make it look deliberate. Colours, spacing, type. Maybe [add pictures](docs/images.md). Check it on your phone. |
-| **Friday** | Publish it, send the link to five people, then talk us through how it works for five minutes. |
+| **Friday** | [Put it online](docs/publishing.md) so it has a real address, send the link to five people, then talk us through how it works for five minutes. |
 
 **Done before the day is?** That's expected, not a sign you've rushed. [Going further](docs/going-further.md) has the harder work — take whatever looks interesting.
 
@@ -49,5 +49,6 @@ These keep you unstuck. AI will break all of them if you let it.
 | [How the code works](docs/how-the-code-works.md) | What's in `index.html`, and how scoring works |
 | [Adding images](docs/images.md) | Pictures on questions and results, and where to put them |
 | [Working with Claude](docs/using-claude.md) | Prompts that help, and what to never accept |
+| [Publishing it](docs/publishing.md) | Friday: GitHub Pages, and why a link beats sending the file |
 | [When it breaks](docs/when-it-breaks.md) | Reading errors, and the three mistakes everyone makes |
 | [Going further](docs/going-further.md) | Harder extensions for when you finish early |
