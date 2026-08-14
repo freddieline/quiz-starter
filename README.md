@@ -27,7 +27,7 @@ These keep you unstuck. AI will break all of them if you let it.
 | Day | What you're doing |
 |---|---|
 | **Monday** | Make it yours. Change the title, the teaser and the `--accent` colour. Rewrite the two questions and two results to be about your topic. Break something on purpose, then undo it with [Discard changes](docs/saving-your-work.md). |
-| **Tuesday** | Fill it out. Six questions, at least three results. Watch the commas. |
+| **Tuesday** | Fill it out. Six questions, at least three results. Watch the commas. Read [the JavaScript you need](docs/javascript-basics.md) before you finish today. |
 | **Wednesday** | Make the scoring work. Find `addPoints` — it's deliberately empty, and it's why everyone currently gets the same result. There's a hint above it. **This is the day it becomes a real quiz.** |
 | **Thursday** | Make it look deliberate. Colours, spacing, type. Maybe [add pictures](docs/images.md). Check it on your phone. |
 | **Friday** | Publish it, send the link to five people, then talk us through how it works for five minutes. |
@@ -41,6 +41,7 @@ These keep you unstuck. AI will break all of them if you let it.
 | [Getting started](docs/getting-started.md) | Video, accounts, and getting your own copy running |
 | [Terminal cheatsheet](docs/terminal.md) | The eight commands you need, Mac and Windows |
 | [Saving your work](docs/saving-your-work.md) | Commit, Push, and the Discard button that saves you |
+| [The JavaScript you need](docs/javascript-basics.md) | The seven things, taught from your own file. Read before Wednesday |
 | [How the code works](docs/how-the-code-works.md) | What's in `index.html`, and how scoring works |
 | [Adding images](docs/images.md) | Pictures on questions and results, and where to put them |
 | [Working with Claude](docs/using-claude.md) | Prompts that help, and what to never accept |

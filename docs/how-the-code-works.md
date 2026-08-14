@@ -4,6 +4,8 @@
 
 Everything lives in `index.html`. Open it in VS Code and you'll find labelled sections.
 
+If the code itself looks like noise, read [the JavaScript you need](javascript-basics.md) first — it covers the seven things this file is built from.
+
 | Section | What it is | Do you edit it? |
 |---|---|---|
 | `<style>` | Colours, spacing, fonts | Yes — Monday and Thursday |
