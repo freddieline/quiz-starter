@@ -31,14 +31,13 @@ It covers more than you need. **This week you only ever use three buttons:** Com
 
 Now open the terminal inside VS Code — **Ctrl + `** (that's the backtick, top-left of the keyboard, above Tab). Or **Terminal → New Terminal** from the menu.
 
-Type this and press Enter:
-
+Type this and press Enter (for macOS):
 ```bash
-open ./index.html        # Mac
+open ./index.html
 ```
-
+(for Windows)
 ```powershell
-start .\index.html       # Windows
+start .\index.html
 ```
 
 Your quiz opens in the browser. Answer the two questions and you'll get a result.
