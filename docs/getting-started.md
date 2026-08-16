@@ -25,7 +25,7 @@ It covers more than you need. **This week you only ever use three buttons:** Com
 
 1. On the [starter repo](https://github.com/freddieline/quiz-starter), click the green **Use this template** → **Create a new repository**
 2. Name it something yours — `which-taylor-era-are-you`, whatever fits
-3. Set it to **Public**, then **Create repository**
+3. Set it to **Private**, then **Create repository** — only you can see it while you're building. Make it Public when you've got a reason to: showing it to a prospective institution or employer, or [putting it online](publishing.md) on Friday. That's one click in Settings whenever you want it.
 4. Open **GitHub Desktop** → **File → Clone repository** → pick the repo you just made → **Clone**
 5. Click **Open in Visual Studio Code**
 

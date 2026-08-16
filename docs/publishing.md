@@ -12,9 +12,10 @@ You already have everything you need. GitHub will host it for free.
 
 1. Go to your repo on github.com
 2. **Settings** (top right of the repo, not your account settings)
-3. **Pages**, down the left-hand sidebar
-4. Under **Source**, choose **Deploy from a branch**
-5. Branch: **main**, folder: **/ (root)**, then **Save**
+3. Scroll to the bottom, **Change repository visibility** → **Change to public** → confirm. Free GitHub only hosts public repos, so this is the moment your repo comes out of private — a fair trade for a link you can put on a CV.
+4. **Pages**, down the left-hand sidebar
+5. Under **Source**, choose **Deploy from a branch**
+6. Branch: **main**, folder: **/ (root)**, then **Save**
 
 Wait a couple of minutes, then refresh that page. It'll show your address:
 
@@ -22,9 +23,17 @@ Wait a couple of minutes, then refresh that page. It'll show your address:
 https://YOUR-USERNAME.github.io/YOUR-REPO-NAME/
 ```
 
-That's it. That link works on any phone, anywhere, forever, and it costs nothing.
+That's it. That link works on any phone, anywhere, and it costs nothing. It stays up as long as you want it up — [taking it down](#taking-it-down) is two clicks.
 
 **Before you share it, [commit and push everything](saving-your-work.md).** GitHub serves what you pushed, not what's on your laptop. Anything you forgot to push simply won't be there.
+
+---
+
+## Taking it down
+
+This isn't permanent and you're not stuck with it. **Settings** → **Pages** → under Source, set it back to **None**. You can set the repo back to private at the same time.
+
+The link stops working within a minute. Worth knowing before you send it to anyone — you can always change your mind.
 
 ---
 
