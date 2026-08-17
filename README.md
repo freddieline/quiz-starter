@@ -1,4 +1,4 @@
-# Which ___ are you?
+# Which ____ are you?
 
 A starter for building your own personality quiz. Nothing to install except GitHub Desktop and VS Code.
 
