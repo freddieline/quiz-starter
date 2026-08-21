@@ -16,7 +16,7 @@ To check it's safe to publish your app please add this prompt to Claude Code:
 Analyze this repo to see if it passes these publishing checks:
 1) Is this app static (does not save data)?
 2) Is there any PI (Personal Identifying) data displayed?
-3) Is the app able to be tracked by search engines or AI agents?
+3) Is the app able to be tracked by search engines?
 ```
 
 ---
