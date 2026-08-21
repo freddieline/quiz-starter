@@ -8,6 +8,19 @@ You already have everything you need. GitHub will host it for free.
 
 ---
 
+## Pen test checklist
+
+To check it's safe to publish your app please add this prompt to Claude Code:
+
+```
+Analyze this repo to see if it passes these publishing checks:
+1) Is this app static (does not save data)?
+2) Is there any PI (Personal Identifying) data displayed?
+3) Is the app able to be tracked by search engines or AI agents?
+```
+
+---
+
 ## Put it online
 
 1. Go to your repo on github.com
